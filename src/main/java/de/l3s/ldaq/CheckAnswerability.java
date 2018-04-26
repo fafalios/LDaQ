@@ -102,10 +102,9 @@ public class CheckAnswerability {
         StringBuilder newQueryPattern2 = new StringBuilder();
         for (String line : lines) {
             if (line.contains("\"")) {
-
                 int pos1 = line.indexOf("\"");
-                int pos11 = line.indexOf("\"", pos1 + 1);
-                int pos2 = line.indexOf(" ", pos11);
+                int ppp2 = line.lastIndexOf("\"");
+                int pos2 = line.indexOf(" ", ppp2);
 
                 String toRepl;
                 if (pos2 == -1) {
@@ -157,7 +156,7 @@ public class CheckAnswerability {
         }
         queryPattern = newQueryPattern3.toString();
 
-        queryPattern = queryPattern.replace(" a", " [U]").replaceAll("[_][:][A-Za-z0-9]+", "[B]").replace("true", "[L]").replace("false", "[L]").replaceAll("[-+]?[0-9]+", "[L]");
+        queryPattern = queryPattern.replace(" a", " [U]").replaceAll("[_][:][A-Za-z0-9]+", "[B]").replace("true", "[L]").replace("false", "[L]").replaceAll("[-+]?[0-9]*\\.?[0-9]+", "[L]");
 
         queryPattern = queryPattern.replace("\n", " ");
         while (queryPattern.contains("  ")) {
